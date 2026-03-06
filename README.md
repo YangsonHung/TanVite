@@ -19,7 +19,7 @@ TanVite is a production-grade React 19 template repository designed as a reusabl
 
 - Start from a modern React 19 template repository instead of assembling tooling by hand
 - Keep routing, data fetching, styling, testing, and CI aligned from the first commit
-- Separate app deployment (`dist/`) from GitHub Pages showcase deployment (`dist-pages/`)
+- Build product work on top of a frontend baseline that already standardizes routing, data, styling, testing, and CI
 - Reuse a polished landing page and guide page for public project presentation
 - Use the repository directly as a GitHub template for new product work
 
