@@ -1,15 +1,30 @@
+import type { ReactNode } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-const guideSections = [
+const guideSections: { title: string; points: ReactNode[] }[] = [
   {
     title: "Getting started",
     points: [
-      "Install dependencies with `pnpm install`.",
-      "Copy `.env.example` to `.env.local` and replace `OPENAPI_SCHEMA_URL` with your backend Swagger/OpenAPI URL.",
-      "Validate the contract with `pnpm openapi:check` and generate clients with `pnpm openapi:generate`.",
-      "Start the local development environment with `pnpm dev`.",
-      "Use `pnpm build` for the standard production bundle.",
-      "Use `pnpm build:pages` when preparing the public showcase site.",
+      <>
+        Install dependencies with <code>pnpm install</code>.
+      </>,
+      <>
+        Copy <code>.env.example</code> to <code>.env.local</code> and replace{" "}
+        <code>OPENAPI_SCHEMA_URL</code> with your backend Swagger/OpenAPI URL.
+      </>,
+      <>
+        Validate the contract with <code>pnpm openapi:check</code> and generate clients with{" "}
+        <code>pnpm openapi:generate</code>.
+      </>,
+      <>
+        Start the local development environment with <code>pnpm dev</code>.
+      </>,
+      <>
+        Use <code>pnpm build</code> for the standard production bundle.
+      </>,
+      <>
+        Use <code>pnpm build:pages</code> when preparing the public showcase site.
+      </>,
     ],
   },
   {
@@ -69,10 +84,10 @@ function GuidePage() {
           <div className="rounded-[2rem] border border-foreground/10 bg-white/70 p-6 backdrop-blur panel-shadow md:p-8">
             <p className="text-xs uppercase tracking-[0.32em] text-foreground/45">Overview</p>
             <p className="mt-4 text-lg leading-8 text-foreground/68">
-              Use this page as the fast path into TanVite. It gives new visitors enough
-              structure to evaluate the starter, understand what ships in the box, wire a
-              backend contract into it, and jump into the repository without turning the
-              showcase into a heavy documentation site.
+              Use this page as the fast path into TanVite. It gives new visitors enough structure to
+              evaluate the starter, understand what ships in the box, wire a backend contract into
+              it, and jump into the repository without turning the showcase into a heavy
+              documentation site.
             </p>
 
             <div className="mt-8 grid gap-4">
@@ -83,8 +98,8 @@ function GuidePage() {
                 >
                   <h2 className="text-xl font-semibold text-foreground">{section.title}</h2>
                   <ul className="mt-4 space-y-3 text-sm leading-7 text-foreground/62">
-                    {section.points.map((point) => (
-                      <li key={point}>{point}</li>
+                    {section.points.map((point, index) => (
+                      <li key={`${section.title}-${index}`}>{point}</li>
                     ))}
                   </ul>
                 </article>
@@ -95,9 +110,7 @@ function GuidePage() {
           <div className="grid gap-6">
             <section className="rounded-[2rem] border border-foreground/10 bg-foreground p-6 text-background panel-shadow md:p-8">
               <p className="text-xs uppercase tracking-[0.32em] text-background/55">Commands</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
-                Starter commands
-              </h2>
+              <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">Starter commands</h2>
 
               <div className="mt-8 grid gap-3">
                 {commandCards.map(([label, command]) => (
@@ -115,7 +128,9 @@ function GuidePage() {
             </section>
 
             <section className="rounded-[2rem] border border-foreground/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(247,232,214,0.92))] p-6 panel-shadow md:p-8">
-              <p className="text-xs uppercase tracking-[0.32em] text-foreground/45">Project links</p>
+              <p className="text-xs uppercase tracking-[0.32em] text-foreground/45">
+                Project links
+              </p>
               <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-foreground">
                 Open the project, the code, or the issue tracker
               </h2>

@@ -7,16 +7,45 @@ export const Route = createFileRoute("/")({
 
 const starterStats = [
   ["01", "React 19 + TypeScript", "Current React APIs with a strict TS baseline."],
-  ["02", "Router + Query + OpenAPI", "File routes, server-state hooks, and API generation prepared together."],
-  ["03", "Testable by default", "Vitest, Playwright, and mock workflows are already part of the flow."],
+  [
+    "02",
+    "OpenSpec + OpenAPI",
+    "Spec-driven change tracking and contract-driven API generation are prepared together.",
+  ],
+  [
+    "03",
+    "Testable by default",
+    "Vitest, Playwright, and mock workflows are already part of the flow.",
+  ],
 ];
 
 const toolchainItems = [
+  [
+    "Spec",
+    "OpenSpec",
+    "Spec-driven change proposals and baseline specs live inside the repository from day one.",
+  ],
   ["Routing", "TanStack Router", "File-based routes with generated route tree support."],
-  ["Data", "TanStack Query + OpenAPI", "Shared query defaults plus generated API hooks, clients, and mocks."],
-  ["Styling", "Tailwind CSS", "Utility-first styling with theme variables and shadcn/ui compatibility."],
-  ["Quality", "Biome + commitlint", "Linting, formatting, and commit rules are part of the repo baseline."],
-  ["Testing", "Vitest + Playwright + MSW", "Unit, E2E, and contract-driven mock workflows are already scripted."],
+  [
+    "Data",
+    "TanStack Query + OpenAPI",
+    "Shared query defaults plus generated API hooks, clients, and mocks.",
+  ],
+  [
+    "Styling",
+    "Tailwind CSS",
+    "Utility-first styling with theme variables and shadcn/ui compatibility.",
+  ],
+  [
+    "Quality",
+    "Biome + commitlint",
+    "Linting, formatting, and commit rules are part of the repo baseline.",
+  ],
+  [
+    "Testing",
+    "Vitest + Playwright + MSW",
+    "Unit, E2E, and contract-driven mock workflows are already scripted.",
+  ],
 ];
 
 const workflowItems = [
@@ -25,8 +54,8 @@ const workflowItems = [
     "Install dependencies, generate the route tree, and start the Vite dev server with one predictable path.",
   ],
   [
-    "Build features",
-    "Add routes under src/routes, regenerate API clients from OpenAPI, and keep feature code on top of typed hooks.",
+    "Specify and build",
+    "Track changes in openspec/, add routes under src/routes, regenerate API clients from OpenAPI, and keep feature code on typed hooks.",
   ],
   [
     "Verify and ship",
@@ -37,6 +66,7 @@ const workflowItems = [
 const commandItems = [
   ["Install", "pnpm install"],
   ["Develop", "pnpm dev"],
+  ["OpenSpec", "openspec list"],
   ["OpenAPI", "pnpm openapi:generate"],
   ["Generate routes", "pnpm routes:generate"],
   ["Test once", "pnpm test:run"],
@@ -56,6 +86,12 @@ const codePreview = `src/
 │   └── browser.ts
 └── routeTree.gen.ts
 
+openspec/
+├── changes/
+├── specs/
+└── config.yaml
+
+openspec list
 pnpm openapi:generate
 pnpm routes:generate
 pnpm dev`;
@@ -113,11 +149,11 @@ function HomePage() {
               Modern Web Scaffold
             </p>
             <h2 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-foreground md:text-7xl">
-              Build sharp React apps with routing, data orchestration, and testing already wired.
+              Build sharp React apps with specs, contracts, routing, and testing already wired.
             </h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-foreground/68 md:text-lg">
-              TanVite is a focused front-end baseline for teams that want React 19,
-              TanStack Router, TanStack Query, Tailwind CSS, Biome, Vitest, and
+              TanVite is a focused front-end baseline for teams that want OpenSpec, React 19,
+              TanStack Router, TanStack Query, OpenAPI tooling, Tailwind CSS, Biome, Vitest, and
               Playwright working together without carrying the usual starter clutter.
             </p>
 
@@ -150,7 +186,9 @@ function HomePage() {
                   key={title}
                   className="panel-shadow rounded-[1.6rem] border border-foreground/10 bg-white/70 p-5 backdrop-blur"
                 >
-                  <dt className="text-xs uppercase tracking-[0.35em] text-foreground/40">{index}</dt>
+                  <dt className="text-xs uppercase tracking-[0.35em] text-foreground/40">
+                    {index}
+                  </dt>
                   <dd className="mt-3 text-lg font-semibold text-foreground">{title}</dd>
                   <p className="mt-2 text-sm leading-6 text-foreground/60">{description}</p>
                 </div>
@@ -164,9 +202,7 @@ function HomePage() {
           >
             <div className="flex items-start justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-[0.32em] text-foreground/45">
-                  Toolchain
-                </p>
+                <p className="text-xs uppercase tracking-[0.32em] text-foreground/45">Toolchain</p>
                 <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-foreground">
                   Production-minded defaults
                 </h3>
@@ -182,7 +218,9 @@ function HomePage() {
                   key={title}
                   className="rounded-[1.4rem] border border-foreground/10 bg-background/70 p-4 transition hover:border-accent/40"
                 >
-                  <div className="text-xs uppercase tracking-[0.28em] text-foreground/40">{label}</div>
+                  <div className="text-xs uppercase tracking-[0.28em] text-foreground/40">
+                    {label}
+                  </div>
                   <div className="mt-2 text-lg font-semibold text-foreground">{title}</div>
                   <p className="mt-1 text-sm leading-6 text-foreground/60">{copy}</p>
                 </div>
@@ -191,7 +229,9 @@ function HomePage() {
 
             <div className="mt-8 rounded-[1.6rem] bg-foreground px-5 py-5 text-background">
               <p className="text-xs uppercase tracking-[0.32em] text-background/60">Start here</p>
-              <code className="mt-3 block text-sm text-background/85">pnpm install && pnpm dev</code>
+              <code className="mt-3 block text-sm text-background/85">
+                pnpm install && pnpm dev
+              </code>
             </div>
           </aside>
         </div>
@@ -221,7 +261,9 @@ function HomePage() {
             <div className="rounded-[2rem] border border-foreground/10 bg-foreground p-6 text-background panel-shadow md:p-8">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-background/55">CLI Quickstart</p>
+                  <p className="text-xs uppercase tracking-[0.3em] text-background/55">
+                    CLI Quickstart
+                  </p>
                   <h3 className="mt-3 text-3xl font-semibold tracking-[-0.04em]">
                     Commands you actually need on day one
                   </h3>
@@ -233,8 +275,13 @@ function HomePage() {
 
               <div className="mt-8 grid gap-3 sm:grid-cols-2">
                 {commandItems.map(([label, command]) => (
-                  <div key={command} className="rounded-[1.3rem] border border-white/10 bg-white/5 p-4">
-                    <div className="text-xs uppercase tracking-[0.28em] text-background/50">{label}</div>
+                  <div
+                    key={command}
+                    className="rounded-[1.3rem] border border-white/10 bg-white/5 p-4"
+                  >
+                    <div className="text-xs uppercase tracking-[0.28em] text-background/50">
+                      {label}
+                    </div>
                     <code className="mt-3 block text-sm text-background/88">{command}</code>
                   </div>
                 ))}
@@ -242,15 +289,18 @@ function HomePage() {
             </div>
 
             <div className="rounded-[2rem] border border-foreground/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.82),rgba(247,232,214,0.92))] p-6 panel-shadow md:p-8">
-              <p className="text-xs uppercase tracking-[0.3em] text-foreground/45">Project Snapshot</p>
+              <p className="text-xs uppercase tracking-[0.3em] text-foreground/45">
+                Project Snapshot
+              </p>
               <div className="mt-4 grid gap-6 lg:grid-cols-[0.78fr_1.22fr]">
                 <div>
                   <h3 className="text-3xl font-semibold tracking-[-0.04em] text-foreground">
                     File layout that stays legible as the app grows
                   </h3>
                   <p className="mt-4 text-sm leading-7 text-foreground/62">
-                    Routes, shared utilities, and generated artifacts are separated clearly, so
-                    adding more screens does not immediately collapse into a generic template mess.
+                    Spec artifacts, routes, shared utilities, and generated contracts are separated
+                    clearly, so adding more screens does not immediately collapse into a generic
+                    template mess.
                   </p>
                 </div>
                 <pre className="overflow-x-auto rounded-[1.4rem] bg-[#123843] p-5 text-sm leading-7 text-[#f7ede1]">

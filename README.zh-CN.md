@@ -11,15 +11,17 @@
 
 [English](README.md) | **中文**
 
-TanVite 是一个面向生产环境的 React 19 模板仓库，定位为可复用的高标准前端工程基线，适合严肃的产品研发场景。它将 Vite、TypeScript、TanStack Router、TanStack Query、Tailwind CSS、自动化测试、代码质量约束以及 GitHub Pages 展示能力整合为一套打磨完整、适合新项目直接起步的现代前端最佳实践组合。
+TanVite 是一个面向生产环境的 React 19 模板仓库，定位为可复用的高标准前端工程基线，适合严肃的产品研发场景。它将 Vite、TypeScript、OpenSpec、TanStack Router、TanStack Query、OpenAPI 工具链、Tailwind CSS、自动化测试、代码质量约束以及 GitHub Pages 展示能力整合为一套打磨完整、适合新项目直接起步的现代前端最佳实践组合，并把 spec-driven 工作流直接带入仓库基线。
 
 ![TanVite Screenshot](assets/screenshots/tanvite-home.png)
 
 ## 🛰️ 为什么选择 TanVite
 
 - 直接从现代 React 19 模板仓库开始，而不是手动拼装工程体系
+- 从第一天开始就接入 OpenSpec，把变更提案和基础规格收进仓库内管理
 - 从第一条提交开始统一路由、数据层、样式、测试和 CI 约定
 - 直接在一套已经统一路由、数据层、样式、测试与 CI 约定的前端工程基线上开展产品开发
+- 在同一套仓库里同时承载 OpenSpec 驱动的需求流和 OpenAPI 驱动的接口生成流
 - 复用已经完成的落地页和 guide 页面作为公开项目展示入口
 - 可直接作为 GitHub 模板仓库，用于新项目起步
 
@@ -71,6 +73,7 @@ pnpm dev
 ## 💠 特性
 
 - React 19 + TypeScript + Vite 5 模板仓库基线
+- 已初始化为 `spec-driven` 模式的 OpenSpec 工作区
 - TanStack Router 文件路由
 - TanStack Query 数据层
 - 通过 Orval 生成基于 OpenAPI 的 client、hooks 和 mock
@@ -89,6 +92,7 @@ pnpm dev
 | 语言 | TypeScript |
 | 构建工具 | Vite |
 | 包管理器 | pnpm |
+| 规格工作流 | OpenSpec |
 | 路由 | TanStack Router |
 | 数据获取 | TanStack Query |
 | API 契约 | Orval、OpenAPI |
@@ -159,6 +163,23 @@ pnpm dev:mock
 
 如果你需要单独的 mock 服务，使用 `pnpm openapi:mock`，默认地址是 `http://127.0.0.1:4010`。
 
+## 🧭 OpenSpec 工作流
+
+这个仓库已经完成 OpenSpec 初始化，当前使用的是 `spec-driven` schema。
+
+- 活跃中的变更提案放在 `openspec/changes/`
+- 基础规格放在 `openspec/specs/`
+- 仓库级 OpenSpec 配置位于 `openspec/config.yaml`
+
+常用命令：
+
+```bash
+openspec list
+openspec new change <name>
+openspec validate
+openspec spec list
+```
+
 ## 🗺️ 项目结构
 
 ```text
@@ -179,6 +200,11 @@ src/
 ├── types/
 │   └── index.ts
 └── vite-env.d.ts
+
+openspec/
+├── changes/
+├── specs/
+└── config.yaml
 
 tests/
 ├── e2e/
@@ -219,6 +245,7 @@ pnpm routes:generate
 ## 🧰 开发默认约定
 
 - React Query Devtools 和 TanStack Router Devtools 仅在开发环境启用
+- 在功能实现逐渐变大之前，先把需求和行为变更沉淀到 `openspec/changes`
 - 运行 `pnpm openapi:generate` 之前，先把 `OPENAPI_SCHEMA_URL` 指向你的后端契约地址
 - 生成的 API 产物位于 `src/lib/api/generated`
 - 在 `src/lib/query-client.ts` 中维护共享 Query 默认配置
