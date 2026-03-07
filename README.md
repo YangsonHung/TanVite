@@ -11,7 +11,7 @@
 
 **English** | [中文](README.zh-CN.md)
 
-TanVite is a production-grade React 19 template repository designed as a reusable frontend engineering foundation for serious product teams. It combines Vite, TypeScript, OpenSpec, TanStack Router, TanStack Query, OpenAPI tooling, Tailwind CSS, automated testing, code-quality enforcement, and GitHub Pages-ready delivery into a polished, high-standard stack for launching new products with spec-driven workflow and modern frontend best practices already in place.
+TanVite is a production-grade React 19 template repository designed as a reusable frontend engineering foundation for serious product teams. It combines Vite, TypeScript, OpenSpec, a shared `.agents/skills` catalog for Codex and Claude Code, TanStack Router, TanStack Query, OpenAPI tooling, Tailwind CSS, automated testing, code-quality enforcement, and GitHub Pages-ready delivery into a polished, high-standard stack for launching new products with spec-driven workflow, AI-assisted implementation, and modern frontend best practices already in place.
 
 ![TanVite Screenshot](assets/screenshots/tanvite-home.png)
 
@@ -19,6 +19,7 @@ TanVite is a production-grade React 19 template repository designed as a reusabl
 
 - Start from a modern React 19 template repository instead of assembling tooling by hand
 - Work with OpenSpec from day one so change proposals and baseline specs stay inside the repository
+- Use a shared agent-skill catalog for Codex and Claude Code to cover design, code review, testing, git workflows, and browser automation
 - Keep routing, data fetching, styling, testing, and CI aligned from the first commit
 - Build product work on top of a frontend baseline that already standardizes routing, data, styling, testing, and CI
 - Combine OpenSpec-driven planning with OpenAPI-driven API generation in one repository
@@ -74,6 +75,7 @@ pnpm dev
 
 - React 19 + TypeScript + Vite 5 template repository baseline
 - OpenSpec workspace initialized in `spec-driven` mode
+- Shared `.agents/skills` support for Codex and Claude Code, covering frontend design, review, testing, git workflows, and browser automation
 - TanStack Router file-based routing
 - TanStack Query data layer
 - OpenAPI-driven client, hook, and mock generation via Orval
@@ -93,6 +95,7 @@ pnpm dev
 | Build Tool | Vite |
 | Package Manager | pnpm |
 | Specification Workflow | OpenSpec |
+| AI Collaboration | `.agents/skills`, Codex, Claude Code, OPSX commands |
 | Routing | TanStack Router |
 | Data Fetching | TanStack Query |
 | API Contract | Orval, OpenAPI |
@@ -180,6 +183,17 @@ openspec validate
 openspec spec list
 ```
 
+## 🤖 Integrated Skills
+
+The current workspace ships with a shared skill catalog under `.agents/skills/`, designed to be reused by both Codex and Claude Code.
+
+- `openspec-*` skills and `opsx/*` commands for OpenSpec change exploration, proposal, application, and archiving
+- `frontend-design`, `ui-ux-pro-max`, and `web-design-guidelines` for product-facing UI work
+- `frontend-code-review` and `code-review-expert` for review passes on pending changes
+- `react-expert` and `typescript-expert` for framework and language-specific guidance
+- `agent-browser` and `webapp-testing` for browser automation and local app verification
+- `git-commit` and `git-pushing` for conventional commit and delivery workflows
+
 ## 🗺️ Project Structure
 
 ```text
@@ -205,6 +219,19 @@ openspec/
 ├── changes/
 ├── specs/
 └── config.yaml
+
+.agents/
+└── skills/
+    ├── agent-browser/
+    ├── frontend-design/
+    ├── openspec-propose/
+    ├── react-expert/
+    ├── typescript-expert/
+    └── webapp-testing/
+
+.claude/
+└── commands/
+    └── opsx/
 
 tests/
 ├── e2e/
@@ -246,6 +273,7 @@ For regular production deployment, use `pnpm build`.
 
 - Enable React Query Devtools and TanStack Router Devtools only in development
 - Track requirement and behavior changes in `openspec/changes` before implementation work grows
+- Keep the shared `.agents/skills` catalog versioned with the project so Codex and Claude Code stay aligned on the same workflows
 - Point `OPENAPI_SCHEMA_URL` at your backend spec before running `pnpm openapi:generate`
 - Generated API artifacts live under `src/lib/api/generated`
 - Keep shared query defaults in `src/lib/query-client.ts`

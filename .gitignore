@@ -13,6 +13,9 @@ dist-ssr
 .env.local
 .env.*.local
 
+# Python
+__pycache__/
+
 # Testing
 coverage
 playwright-report
