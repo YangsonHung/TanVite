@@ -13,7 +13,7 @@
 
 TanVite 是一个面向生产环境的 React 19 模板仓库，定位为可复用的高标准前端工程基线，适合严肃的产品研发场景。它将 Vite、TypeScript、OpenSpec、面向 Codex 的 `.agents/skills`、面向 Claude Code 的 `.claude/skills` 与 OPSX commands、TanStack Router、TanStack Query、OpenAPI 工具链、Tailwind CSS、自动化测试、代码质量约束以及 GitHub Pages 展示能力整合为一套打磨完整、适合新项目直接起步的现代前端最佳实践组合，并把 spec-driven 工作流和 AI 辅助研发能力一起带入仓库基线。
 
-![TanVite Screenshot](assets/screenshots/tanvite-home.png)
+![TanVite Screenshot](assets/screenshots/tanvite-home-zh.png)
 
 ## 🛰️ 为什么选择 TanVite
 
